@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        var total=Number(0);
+var final=Number(0);
+var flag=Number(0);
+function char(v){
+    var f=Number(0)
+    for(var i of v)
+    {
+        if (i<="9")
+        {
+            continue
+        }
+        else{
+            f=Number(1);
+        }
+    }
+    return f;
+}
+function find(v1,v2){
+    var v1=v1.trim(); var v2=v2.trim(); var v3=char(v1); var v4=char(v2);
+    if((v3!=0) || (v4!=0) || (v1!="" && v2=="") || (v2!="" && v1==""))
+    {
+        document.getElementById("errors").innerHTML="Enter the proper values..!";
+        flag+=Number(1);
+    }
+    else if(v1!="" && v2!=""){
+        total+=Number(1);
+        final+=Number(v1);
+    }
+}
+function my(){
+    var one,two,three,four,five,six,seven,eight;
+    one=document.getElementById("1").value;
+    two=document.getElementById("2").value;
+    three=document.getElementById("3").value; 
+    four=document.getElementById("4").value;
+    five=document.getElementById("5").value; 
+    six=document.getElementById("6").value;
+    seven=document.getElementById("7").value; 
+    eight=document.getElementById("8").value;
+    one_a=document.getElementById("1_a").value;
+    two_a=document.getElementById("2_a").value;
+    three_a=document.getElementById("3_a").value; 
+    four_a=document.getElementById("4_a").value;
+    five_a=document.getElementById("5_a").value; 
+    six_a=document.getElementById("6_a").value;
+    seven_a=document.getElementById("7_a").value; 
+    eight_a=document.getElementById("8_a").value;
+    find(one,one_a);find(two,two_a);find(three,three_a);find(four,four_a);find(five,five_a);find(six,six_a);find(seven,seven_a);find(eight,eight_a);
+    var a=final/total;
+    var n = a.toFixed(2);
+    if(flag==0 && isNaN(a)){
+        document.getElementById("errors").innerHTML="Enter the proper values..!";
+    }
+    else if(flag==0){
+        document.getElementById("total").innerHTML="Total CGPA :"+n;
+        alert("Total GPA: "+n);
+    }
+}
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+    html{
+    color:white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image:linear-gradient(to right,black,black)
+}
+input{
+    border:1px solid grey;
+    background-color: black;
+    padding:7px;
+    color:grey;
+    border-radius: 8px;
+}
+h1,p{
+    text-align: center;
+}
+button{
+    padding:8px;
+    background-color: black;
+    color: grey;
+    border: 1px solid grey;
+    width:200px;
+    border-radius: 8px;
+}
+.button{
+    margin-left: 135px;
+}
+.button1{
+    float: right;
+}
+P{
+    color:grey;
+    text-align: center;
+    margin-left: 40px;
+}
+.gpa{
+    text-decoration: none;
+    color:grey;
+}
+body{
+    border:1px solid grey;
+    padding:20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px grey;
+}
+    </style>
+</head>
+<body>
+    <h1>CGPA calculator</h1>
+    <p>Developed by <a href="https://www.linkedin.com/in/meiyappan-a-23a697206">Meiyappan Anbu</a> </p>
+    <form autocomplete="off">
+        <label>1<sup>st</sup> Semester: </label>
+        <input id="1" type="text" placeholder="GPA">
+        <input id="1_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>2<sup>nd</sup> Semester: </label>
+        <input id="2" type="text" placeholder="GPA">
+        <input id="2_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>3<sup>rd</sup> Semester: </label>
+        <input id="3" type="text" placeholder="GPA">
+        <input id="3_a"type="text" placeholder="Total credits earned"><br><br>
+        <label>4<sup>th</sup> Semester: </label>
+        <input id="4" type="text" placeholder="GPA">
+        <input id="4_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>5<sup>th</sup> Semester: </label>
+        <input id="5" type="text" placeholder="GPA">
+        <input id="5_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>6<sup>th</sup> Semester: </label>
+        <input id="6" type="text" placeholder="GPA">
+        <input id="6_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>7<sup>th</sup> Semester: </label>
+        <input id="7" type="text" placeholder="GPA">
+        <input id="7_a" type="text" placeholder="Total credits earned"><br><br>
+        <label>8<sup>th</sup> Semester: </label>
+        <input id="8" type="text" placeholder="GPA">
+        <input id="8_a" type="text" placeholder="Total credits earned"><br><br>
+        <button type="button" class="button" onclick="my()">Calculate CGPA</button><br>
+        <p id="errors"></p><p id="total"></p>
+        <button type="button"><a href="index1.html" target="_self" class="gpa">Go to GPA Calculate</a></button>
+        <button type="button" class="button1" onclick="document.location.reload()">Reload the Page</button>
+    </form>
+</body>
+</html>
