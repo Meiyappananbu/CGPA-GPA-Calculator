@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html{
+    margin:0;
+    padding:0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, black,black);
+}
+h1,p{
+    text-align: center;
+    color: white;
+}
+body{
+    border:1px solid grey;
+    padding:20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px grey;  
+}
+.gpa{
+    background-color: black;
+    border: 1px solid grey;
+    padding:5px;
+    width: 200px;
+    border-radius: 8px;
+    margin-left: 180px;
+}
+.gpacal{
+    text-decoration: none;
+    color: grey;
+}
+#submit{
+    float: right;
+    margin-right: 200px;
+    background-color: black;
+    color: grey;
+    border: 1px solid grey;
+    padding:5px;
+    width:100px;
+    border-radius: 8px;
+}
+form label{
+    color:white;
+}
+input{
+    border:1px solid grey;
+    background-color: black;
+    padding:7px;
+    color:grey;
+    border-radius: 8px;
+    width:110px
+}
+#final,#error{
+    margin-left: 30px;
+    color:grey;
+    font-size: 18px;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+</head>
+<body>
+    <h1>CGPA calculator</h1>
+    <p>Developed by <a href="https://www.linkedin.com/in/meiyappan-a-23a697206">Meiyappan Anbu</a> </p>
+    <form name="myform" autocomplete="off">
+        <label>Semester Start from: </label>
+        <input type="number" placeholder="1(Starts from 1)" name="No1">
+        <label>Semester Ends with: </label>
+        <input type="number" placeholder="3(ends with 3)" name="No2"><br><br>
+        <button type="button" id="submit" onclick="my()">Submit</button><br><br>
+    </form>
+    <p id="boxes">
+    </p>
+    <p id="error">
+    </p>
+    <p id="final">
+    </p>
+        <button class="gpa" type="button"><a href="index1.html" target="_self" class="gpacal">Go to GPA Calculate</a></button>
+    </form>
+</body>
+<script>
+    function my(){
+    var a=document.forms["myform"]["No1"].value;
+    var b=document.forms["myform"]["No2"].value;
+    if(a>b){
+        document.getElementById("error").innerHTML="Enter the proper values..!"; 
+    }
+    else if(a=="" || b=="")
+    {
+        document.getElementById("error").innerHTML="Enter the proper values..!"; 
+    }
+    else
+    {
+        document.getElementById("error").innerHTML="";
+        document.getElementById("final").innerHTML="";
+        var txt=""
+        var j=100;
+        "<form autocomplete=off>"
+        for(var i=a;i<Number(b)+1;i++){
+            txt+="<lable style='color:white;'>Semester " + i +":<input autocomplete=off type=number id="+i+" placeholder=GPA>   <input autocomplete=off type=number id="+j+" placeholder=Credits><br><br>"
+            j+=1;
+        }
+        txt+="<button style='background-color: black;margin-left:25px;color: grey;border: 1px solid grey;padding:5px;width:100px;border-radius: 8px;' type=button onclick=f()>Calculate</button>"
+        "</form>"
+        document.getElementById("boxes").innerHTML=txt
+    }  
+}
+function f(){
+    document.getElementById("error").innerHTML="";
+    document.getElementById("final").innerHTML="";
+    var loop1=document.forms["myform"]["No1"].value;
+    var loop2=document.forms["myform"]["No2"].value;
+    j=100;
+    var flag=Number(0)
+    var sum=Number(0);
+    var credit=Number(0);
+    for(var i=loop1;i<Number(loop2)+1;i++){
+        var val1=document.getElementById(i).value;
+        var val2=document.getElementById(j).value;
+        if(val2=="" || val1==""){
+            document.getElementById("error").innerHTML="Enter the proper values..!";  
+            flag=Number(1);
+        }
+        else{
+            sum+=(Number(val1)*Number(val2));
+            credit+=Number(val2);
+        }
+        j+=1;
+    }
+    if(flag==0){
+        var num=sum/credit;
+        var n = num.toFixed(2);
+        document.getElementById("final").innerHTML="Total CGPA: "+n;
+        alert("Total CGPA: "+n);
+    }
+    else{
+        document.getElementById("error").innerHTML="Enter the proper values..!"; 
+    }
+}
+</script>
+</html>

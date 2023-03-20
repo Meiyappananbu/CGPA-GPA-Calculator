@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html{
+    margin:0;
+    padding:0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, black,black);
+}
+h1,p{
+    text-align: center;
+    color: white;
+}
+body{
+    border:1px solid grey;
+    padding:20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px grey;  
+}
+#submit{
+    float: right;
+    margin-right: 50px;
+    background-color: black;
+    color: grey;
+    border: 1px solid grey;
+    padding:5px;
+    width:100px;
+    border-radius: 8px;
+}
+form label{
+    color:white;
+}
+.cgpa{
+    background-color: black;
+    border: 1px solid grey;
+    padding:5px;
+    width: 200px;
+    border-radius: 8px;
+    margin-left: 85px;
+}
+.cgpacal{
+    text-decoration: none;
+    color: grey;
+}
+input{
+    border:1px solid grey;
+    background-color: black;
+    padding:7px;
+    color:grey;
+    border-radius: 8px;
+}
+#final,#error{
+    color:grey;
+    font-size: 18px;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+</head>
+<body>
+    <h1>GPA calculator</h1>
+    <p>Developed by <a href="https://www.linkedin.com/in/meiyappan-a-23a697206">Meiyappan Anbu</a> </p>
+    <form name="myform" autocomplete="off">
+        <label>Enter the Number of subjects: </label>
+        <input type="text" placeholder="3(No. of subjects are 3)" name="No"><br><br>
+        <button type="button" id="submit" onclick="my()">Submit</button><br><br>
+    </form>
+    <p id="boxes">
+    </p>
+    <p id="error">
+    </p>
+    <p id="final">
+    </p>
+    <button type="button" class="cgpa"><a href="index.html" target="_self" class="cgpacal">Go to CGPA Calculate</a></button>
+</body>
+<script>
+    function my(){
+    var a=document.forms["myform"]["No"].value;
+    if(a=="")
+    {
+        document.getElementById("error").innerHTML="Enter the proper values..!"; 
+    }
+    else
+    {
+        document.getElementById("error").innerHTML="";
+        document.getElementById("final").innerHTML="";
+        var txt=""
+        var j=100;
+        "<form autocomplete=off>"
+        for(var i=1;i<Number(a)+1;i++){
+            txt+="<lable style='color:white;'>Subject " + i +": </label><select style='border-radius:8px;color:grey; padding:5px; background-color:black;' id="+j+"><option>Grade</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option><option>U</option><label></select></label>  <input autocomplete=off type=number id="+i+" placeholder=Credits><br><br>"
+            j+=1;
+        }
+        txt+="<button style='background-color: black;color: grey;border: 1px solid grey;padding:5px;width:100px;border-radius: 8px;' type=button onclick=f()>Calculate</button>"
+        "</form>"
+        document.getElementById("boxes").innerHTML=txt
+    }  
+}
+function f(){
+    document.getElementById("error").innerHTML="";
+    document.getElementById("final").innerHTML="";
+    var loop=document.forms["myform"]["No"].value;
+    var grade={"Grade":0,"S":10,"A":9,"B":8,"C":7,"D":6,"U":0};
+    j=100;
+    var flag=Number(0)
+    var sum=Number(0);
+    var credit=Number(0);
+    for(var i=1;i<Number(loop)+1;i++){
+        var value1=document.getElementById(j).value;
+        var b=grade[value1];
+        var a=document.getElementById(i).value;
+        if(a=="" || value1=="Grade"){
+            document.getElementById("error").innerHTML="Enter the proper values..!";  
+            flag=Number(1);
+        }
+        else{
+            sum+=(Number(a)*Number(b));
+            credit+=Number(a);
+        }
+        j+=1;
+    }
+    if(flag==0){
+        var num=sum/credit;
+        var n = num.toFixed(2);
+        document.getElementById("final").innerHTML="Total GPA: "+n;
+        alert("Total GPA: "+n);
+    }
+    else{
+        document.getElementById("error").innerHTML="Enter the proper values..!"; 
+    }
+}
+</script>
+</html>
